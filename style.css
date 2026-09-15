@@ -4267,3 +4267,53 @@ body {
 
 }
 
+/* =====================================
+   KEY WORDS
+===================================== */
+
+.association-word--key {
+  border: 1px solid rgba(255,255,255,.32);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.07),
+      rgba(255,255,255,.03)
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04),
+    0 0 14px rgba(255,255,255,.08),
+    0 0 28px rgba(255,255,255,.05);
+
+  animation:
+    associationWordPop .55s cubic-bezier(.2,.8,.2,1) forwards,
+    associationKeywordGlow 2.2s ease-in-out infinite;
+}
+
+@keyframes associationKeywordGlow {
+
+  0% {
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.04),
+      0 0 10px rgba(255,255,255,.06),
+      0 0 20px rgba(255,255,255,.03);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.08),
+      0 0 18px rgba(255,255,255,.14),
+      0 0 34px rgba(255,255,255,.08);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.04),
+      0 0 10px rgba(255,255,255,.06),
+      0 0 20px rgba(255,255,255,.03);
+  }
+
+}
