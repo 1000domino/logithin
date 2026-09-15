@@ -1166,8 +1166,8 @@ body {
   position: relative;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 9px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 
   padding-top: 25px;
 }
@@ -1181,9 +1181,9 @@ body {
   position: absolute;
 
   top: 0;
-  left: 12.5%;
+  left: 16.666%;
 
-  width: 75%;
+  width: 66.668%;
   height: 1px;
 
   background: #aaa;
@@ -4381,4 +4381,64 @@ body {
       scale(1);
   }
 
+}
+
+/* =====================================
+   FEATURED TREE GROUP
+===================================== */
+
+.featured-tree-group h3 {
+  padding: 16px 8px;
+
+  border: 2px solid transparent;
+
+  background:
+    linear-gradient(#111, #111) padding-box,
+    var(--insta-gradient) border-box;
+
+  color: #fff;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.12);
+
+  transform: translateY(-4px);
+}
+
+
+/* 通常の上線は中央だけ不要 */
+
+.featured-tree-group h3::before {
+  display: none;
+}
+
+
+/* PRIORITY */
+
+.tree-priority {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .18em;
+
+  background: var(--insta-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+/* 下位項目もちょっとだけ強く */
+
+.featured-tree-group .tree-reasons p {
+  border: 1px solid rgba(131,58,180,.16);
+
+  background: #fff;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.04);
 }
