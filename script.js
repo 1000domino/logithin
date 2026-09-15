@@ -855,8 +855,13 @@ function createAssociationWord(
   element.textContent = word;
 
 
-  /* 少しだけ位置をズラす */
+  /* 光らせたい単語なら class追加 */
+  if (keyAssociationWords.has(word)) {
+    element.classList.add("association-word--key");
+  }
 
+
+  /* 少しだけ位置をズラす */
   const shiftX =
     Math.round(
       Math.random() * 12 - 6
@@ -890,7 +895,6 @@ function createAssociationWord(
 
 
   /* 出現タイミングも少しずらす */
-
   element.style.animationDelay =
     `${index * 70}ms`;
 
@@ -1039,3 +1043,12 @@ associationSeeds.forEach(
 
   }
 );
+
+const keyAssociationWords = new Set([
+  "物語の終わり",
+  "今日の日はさようなら",
+  "愛着",
+  "大切",
+  "離れたくない",
+  "いつか終わる"
+]);
