@@ -4409,13 +4409,6 @@ body {
   transform: none;
 }
 
-
-/* 通常の上線は消す */
-.featured-tree-group h3::before {
-  display: none;
-}
-
-
 /* 下位項目もほんの少しだけ */
 .featured-tree-group .tree-reasons p {
   border: 1px solid rgba(131,58,180,.10);
