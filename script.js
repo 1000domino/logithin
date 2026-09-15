@@ -736,3 +736,306 @@ if (contextToggle && contextDetail) {
     }
   });
 }
+
+
+/* =====================================
+   POST 00 / ASSOCIATION THINKING
+===================================== */
+
+const associationSeeds =
+  document.querySelectorAll(".association-seed");
+
+const associationStage =
+  document.getElementById("associationStage");
+
+const associationPlaceholder =
+  document.getElementById("associationPlaceholder");
+
+const associationStatus =
+  document.getElementById("associationStatus");
+
+const associationOutput =
+  document.getElementById("associationOutput");
+
+
+/* =====================================
+   WORD DATA
+===================================== */
+
+const associationWords = {
+
+  chiikawa: [
+    "ハチワレ",
+    "うさぎ",
+    "くりまんじゅう",
+    "ラッコ",
+    "シーサー",
+    "モモンガ",
+    "古本屋",
+    "ポシェットの鎧さん"
+  ],
+
+  movie: [
+    "劇中歌",
+    "今日の日はさようなら",
+    "物語の終わり",
+    "別れ",
+    "余韻",
+    "エンドロール"
+  ],
+
+  feeling: [
+    "さみしい",
+    "つらい",
+    "大切",
+    "愛着",
+    "失う",
+    "離れたくない",
+    "いつか終わる",
+    "苦しい"
+  ]
+
+};
+
+
+const expandedGroups = new Set();
+
+
+/* =====================================
+   SHUFFLE
+===================================== */
+
+function shuffleArray(array) {
+
+  const copied = [...array];
+
+  for (
+    let i = copied.length - 1;
+    i > 0;
+    i--
+  ) {
+
+    const j =
+      Math.floor(Math.random() * (i + 1));
+
+    [
+      copied[i],
+      copied[j]
+    ] = [
+      copied[j],
+      copied[i]
+    ];
+
+  }
+
+  return copied;
+
+}
+
+
+/* =====================================
+   CREATE WORD
+===================================== */
+
+function createAssociationWord(
+  word,
+  group,
+  index
+) {
+
+  const element =
+    document.createElement("span");
+
+  element.classList.add(
+    "association-word"
+  );
+
+  element.dataset.group = group;
+
+  element.textContent = word;
+
+
+  /* 少しだけ位置をズラす */
+
+  const shiftX =
+    Math.round(
+      Math.random() * 12 - 6
+    );
+
+  const shiftY =
+    Math.round(
+      Math.random() * 10 - 5
+    );
+
+  const rotate =
+    (
+      Math.random() * 8 - 4
+    ).toFixed(1);
+
+
+  element.style.setProperty(
+    "--shift-x",
+    `${shiftX}px`
+  );
+
+  element.style.setProperty(
+    "--shift-y",
+    `${shiftY}px`
+  );
+
+  element.style.setProperty(
+    "--rotate",
+    `${rotate}deg`
+  );
+
+
+  /* 出現タイミングも少しずらす */
+
+  element.style.animationDelay =
+    `${index * 70}ms`;
+
+
+  return element;
+
+}
+
+
+/* =====================================
+   EXPAND
+===================================== */
+
+associationSeeds.forEach(
+  function (seed) {
+
+    seed.addEventListener(
+      "click",
+      function () {
+
+        const group =
+          seed.dataset.group;
+
+
+        /* すでに開いていたら何もしない */
+
+        if (
+          expandedGroups.has(group)
+        ) {
+          return;
+        }
+
+
+        expandedGroups.add(group);
+
+        seed.classList.add("active");
+
+
+        /* 最初のクリックで ... を消す */
+
+        if (associationPlaceholder) {
+
+          associationPlaceholder
+            .classList
+            .add("hidden");
+
+        }
+
+
+        /* ワードの順番をランダム化 */
+
+        const words =
+          shuffleArray(
+            associationWords[group]
+          );
+
+
+        words.forEach(
+          function (word, index) {
+
+            const element =
+              createAssociationWord(
+                word,
+                group,
+                index
+              );
+
+
+            /* 少しずつ増えていく */
+
+            setTimeout(
+              function () {
+
+                associationStage
+                  .appendChild(element);
+
+              },
+              index * 55
+            );
+
+          }
+        );
+
+
+        /* STATUS */
+
+        if (associationStatus) {
+
+          associationStatus.textContent =
+            `THOUGHTS ${expandedGroups.size} / 3`;
+
+        }
+
+
+        /* =================================
+           ALL COMPLETE
+        ================================= */
+
+        if (
+          expandedGroups.size === 3
+        ) {
+
+          /*
+            最後のワードがある程度
+            出終わってから結論を表示
+          */
+
+          setTimeout(
+            function () {
+
+              associationStage
+                .classList
+                .add("complete");
+
+
+              if (associationOutput) {
+
+                associationOutput
+                  .classList
+                  .add("visible");
+
+                associationOutput
+                  .setAttribute(
+                    "aria-hidden",
+                    "false"
+                  );
+
+              }
+
+
+              if (associationStatus) {
+
+                associationStatus.textContent =
+                  "THOUGHTS → COMPRESSED";
+
+              }
+
+            },
+            1050
+          );
+
+        }
+
+      }
+    );
+
+  }
+);
