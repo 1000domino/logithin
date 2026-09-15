@@ -121,108 +121,114 @@
 
 
     <!-- ==============================
-         JUMP
-    =============================== -->
+     ASSOCIATION THINKING
+=============================== -->
 
-    <div class="jump-thinking intro-jump">
+<div
+  class="association-demo"
+  id="associationDemo"
+>
 
-      <div class="thought-box">
-        ちいかわの映画
-      </div>
+  <!-- 最初に見えている3つの入口 -->
+  <div class="association-seeds">
 
-
-      <button
-        class="thinking-trigger"
-        id="introThinkingTrigger"
-        type="button"
-        aria-expanded="false"
-        aria-controls="introHiddenThinking"
-      >
-        <span>?</span>
-        <small>思考をひらく</small>
-      </button>
-
-
-      <div class="thought-box accent">
-        愛別離苦やなあ😭
-      </div>
-
-    </div>
-
-
-    <!-- ==============================
-         HIDDEN THINKING
-    =============================== -->
-
-    <div
-      class="hidden-thinking"
-      id="introHiddenThinking"
+    <button
+      type="button"
+      class="association-seed"
+      data-group="chiikawa"
     >
+      ちいかわ
+    </button>
 
-      <p class="hidden-title">
-        WHAT'S INSIDE THE "?"
-      </p>
+    <button
+      type="button"
+      class="association-seed"
+      data-group="movie"
+    >
+      映画
+    </button>
 
+    <button
+      type="button"
+      class="association-seed"
+      data-group="feeling"
+    >
+      感想
+    </button>
 
-
-    <div class="thinking-step">
-        <span>01</span>
-        <p>
-          劇中歌「今日の日はさようなら」
-        </p>
-      </div>
-        
-      <div class="thinking-arrow">↓</div>
-
-      <div class="thinking-step">
-        <span>02</span>
-        <p>
-          大切な存在との<br>
-          別れはつらい
-        </p>
-      </div>
-
-      <div class="thinking-arrow">↓</div>
+  </div>
 
 
-      <div class="thinking-step">
-        <span>03</span>
-        <p>
-          大切に思うほど、<br>
-          失う苦しみも生じる
-        </p>
-      </div>
+  <div class="association-guide">
 
-      <div class="thinking-arrow">↓</div>
+    <span>
+      CLICK TO EXPAND
+    </span>
 
-
-      <div class="thinking-step">
-        <span>04</span>
-        <p>
-          人間は、愛するものとの<br>
-          別離を避けられない
-        </p>
-      </div>
-
-      <div class="thinking-arrow">↓</div>
-
-
-      <div class="thinking-step intro-final-step">
-        <span>05</span>
-        <p>
-          愛別離苦<br>（仏教用語で、愛する対象と、いつかは必ず離れなければならないことによって生じる精神的な苦痛のこと）
-        </p>
-      </div>
-
-    </div>
-
-
-    <p class="visual-caption intro-caption">
-      考えを圧縮した状態で<br>
-      答えだけを出力してしまう。
+    <p>
+      言葉をクリックすると、<br>
+      頭の中の連想が広がります。
     </p>
 
   </div>
+
+
+  <!-- ==============================
+       頭の中
+  =============================== -->
+
+  <div
+    class="association-stage"
+    id="associationStage"
+    aria-live="polite"
+  >
+
+    <p
+      class="association-placeholder"
+      id="associationPlaceholder"
+    >
+      ...
+    </p>
+
+  </div>
+
+
+  <!-- 状態 -->
+  <p
+    class="association-status"
+    id="associationStatus"
+  >
+    THOUGHTS 0 / 3
+  </p>
+
+
+  <!-- ==============================
+       最後の出力
+  =============================== -->
+
+  <div
+    class="association-output"
+    id="associationOutput"
+    aria-hidden="true"
+  >
+
+    <span class="association-output-label">
+      OUTPUT
+    </span>
+
+    <strong>
+      愛別離苦やなあ😭
+    </strong>
+
+    <p>
+      考えていないわけではない。<br>
+      でも、途中をかなり圧縮した状態で<br>
+      答えに辿り着くことがある。
+    </p>
+
+  </div>
+
+</div>
 
 
   <div class="post-body">
