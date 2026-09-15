@@ -4272,25 +4272,13 @@ body {
 ===================================== */
 
 .association-word--key {
-  border: 1px solid rgba(255,255,255,.32);
-
+  border: 1px solid transparent;
   background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.07),
-      rgba(255,255,255,.03)
-    );
-
+    linear-gradient(#171717, #171717) padding-box,
+    var(--insta-gradient) border-box;
   color: #fff;
-
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.04),
-    0 0 14px rgba(255,255,255,.08),
-    0 0 28px rgba(255,255,255,.05);
-
-  animation:
-    associationWordPop .55s cubic-bezier(.2,.8,.2,1) forwards,
-    associationKeywordGlow 2.2s ease-in-out infinite;
+    0 0 12px rgba(255,255,255,.08);
 }
 
 @keyframes associationKeywordGlow {
