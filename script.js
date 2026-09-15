@@ -1052,3 +1052,83 @@ const keyAssociationWords = new Set([
   "離れたくない",
   "いつか終わる"
 ]);
+
+
+/* =====================================
+   FOLLOW / SHOW AFTER FULL JOURNEY
+===================================== */
+
+let hasReachedPageEnd = false;
+let followRevealDone = false;
+
+
+function checkFollowReveal() {
+
+  if (!followButton) {
+    return;
+  }
+
+
+  /* 現在位置 */
+
+  const scrollTop =
+    window.scrollY ||
+    document.documentElement.scrollTop;
+
+  const viewportHeight =
+    window.innerHeight;
+
+  const documentHeight =
+    document.documentElement.scrollHeight;
+
+
+  /* =================================
+     一度でも最後まで到達したか
+  ================================= */
+
+  const distanceFromBottom =
+    documentHeight -
+    (scrollTop + viewportHeight);
+
+  if (distanceFromBottom < 150) {
+    hasReachedPageEnd = true;
+  }
+
+
+  /* =================================
+     最後まで見たあと、
+     トップ付近へ帰ってきたら表示
+  ================================= */
+
+  if (
+    hasReachedPageEnd &&
+    !followRevealDone &&
+    scrollTop < 180
+  ) {
+
+    followRevealDone = true;
+
+    followButton.classList.add(
+      "follow-ready"
+    );
+
+    followButton.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+  }
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  checkFollowReveal,
+  { passive: true }
+);
+
+
+/* 念のため初回も確認 */
+
+checkFollowReveal();
