@@ -4272,13 +4272,25 @@ body {
 ===================================== */
 
 .association-word--key {
-  border: 1px solid transparent;
+  border: 1px solid rgba(255,255,255,.32);
+
   background:
-    linear-gradient(#171717, #171717) padding-box,
-    var(--insta-gradient) border-box;
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.07),
+      rgba(255,255,255,.03)
+    );
+
   color: #fff;
+
   box-shadow:
-    0 0 12px rgba(255,255,255,.08);
+    0 0 0 1px rgba(255,255,255,.04),
+    0 0 14px rgba(255,255,255,.08),
+    0 0 28px rgba(255,255,255,.05);
+
+  animation:
+    associationWordPop .55s cubic-bezier(.2,.8,.2,1) forwards,
+    associationKeywordGlow 2.2s ease-in-out infinite;
 }
 
 @keyframes associationKeywordGlow {
@@ -4302,6 +4314,71 @@ body {
       0 0 0 1px rgba(255,255,255,.04),
       0 0 10px rgba(255,255,255,.06),
       0 0 20px rgba(255,255,255,.03);
+  }
+
+}
+
+/* =====================================
+   FOLLOW / REVEAL AFTER JOURNEY
+===================================== */
+
+/* 最初は隠す */
+
+.follow-button.follow-await {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform:
+    translateY(6px)
+    scale(.94);
+
+  transition:
+    opacity .45s ease,
+    transform .55s cubic-bezier(.2,.8,.2,1),
+    visibility .45s ease;
+}
+
+
+/* 最後まで見て、トップへ戻ったら出現 */
+
+.follow-button.follow-await.follow-ready {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  animation:
+    followRevealPop
+    .6s
+    cubic-bezier(.2,.9,.25,1.2);
+}
+
+
+@keyframes followRevealPop {
+
+  0% {
+    opacity: 0;
+    transform:
+      translateY(8px)
+      scale(.9);
+  }
+
+  70% {
+    opacity: 1;
+    transform:
+      translateY(-2px)
+      scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
   }
 
 }
